@@ -1,0 +1,27 @@
+<h3 style="text-align: center;">
+	{{title}}
+</h3>
+<p style="text-align: center;padding-left: 20px;margin:auto;">
+  
+</p>
+<table style="width: 100%">
+	<tr>
+		<td>
+			<img src="../assets/{{data.type}}.png" style="width: 100%">
+		</td>
+		<td valign="top">
+			<div style="height: 10px"></div>
+			<mat-form-field appearance="outline">
+			    <mat-label>ID Number</mat-label>
+			    <input #tid matInput placeholder="e.g. 0000001" [(ngModel)]='id' autocomplete="off" maxlength="7" (keydown)="keyDownFunction($event)">
+			    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+			    <mat-hint>{{ id.length }} / 7</mat-hint>
+			  </mat-form-field>
+		  <mat-form-field appearance="outline">
+		    <mat-label>{{title}} ID</mat-label>
+		    <input matInput placeholder="e.g. 2101" autocomplete="off" #sid>
+		    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+		  </mat-form-field>
+		</td>
+	</tr>
+</table>

@@ -1,25 +1,31 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Third Line</span>
+    <span>Aura Gorgeous System</span>
     <span class="example-spacer"></span>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+    <button mat-button   [routerLink]="['/info']" ><mat-icon>touch_app</mat-icon>Info</button>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-drawer-container style="height: 100%">
   <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-    <p>Auto-resizing sidenav</p>
-    <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <div id="sidenav">
+    <a mat-button   [routerLink]="['/login']" ><mat-icon>supervised_user_circle</mat-icon> Login</a><br>
+    <a mat-button   [routerLink]="['/main']" ><mat-icon>dashboard</mat-icon> Serial Section</a><br>
+    </div>
   </mat-drawer>
 
   <div>
     <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
+      <i class="material-icons">reorder</i>
     </button>
+
+    <div style="padding: 20px">
+
+      <router-outlet></router-outlet>
+      
+    </div>
   </div>
 
+
 </mat-drawer-container>
+
