@@ -4,18 +4,33 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { InfoComponent } from './info/info.component';
+import { CpComponent } from './cp/cp.component';
+import { UsersComponent } from './users/users.component';
+import { LogsComponent } from './logs/logs.component';
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent
+    path: '',
+    component: InfoComponent
   },
   {
-    path: 'main',
+    path: 'cno',
     component: MainComponent
   },
   {
-    path: 'info',
+    path: 'cp',
+    component: CpComponent
+  },
+  {
+    path: 'home',
     component: InfoComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
+  },
+  {
+    path: 'logs',
+    component: LogsComponent
   }
 ];
 

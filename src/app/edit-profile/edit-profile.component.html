@@ -1,0 +1,41 @@
+<mat-card class="example-card">
+  <mat-card-header>
+<table style="width:100%">
+	<tr>
+		<td>
+   			 <h3>Update Profile</h3>
+		</td>
+		<td>
+        	<button mat-raised-button 
+        	style="float: right;margin-right: 18px" (click)="closedialog()">Close</button> 
+		</td>
+	</tr>
+</table>
+  </mat-card-header>
+  <mat-card-content>
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 160px;padding: 5px">
+        			<img [src]='temppic' style="width: 150px;border-radius: 50%;">
+				</td>
+				<td>
+					Username: <b>{{global.user.username}}</b>
+					<div style="height: 10px"></div>
+					Account Type: <b>{{global.user.type}}</b>
+					<div style="height: 10px"></div>
+					Status: <b style="background-color: red;color: white;padding: 3px 6px 3px 6px;border-radius: 10px" *ngIf="global.user.status=='inactive'">{{global.user.status}}</b><b style="background-color: green;color: white;padding: 3px 6px 3px 6px;border-radius: 10px" *ngIf="global.user.status=='active'">{{global.user.status}}</b>
+					<div style="height: 10px"></div>
+					<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;">
+					    <mat-label>Name</mat-label>
+					    <input matInput placeholder="e.g. Elton John" [(ngModel)]='name' autocomplete="off">
+					  </mat-form-field>
+
+
+					<input mat-raised-button type="file" id="avatar" (change)="onFileChange($event)" #fileInput class="inputfile" style="margin-top: 10px;margin-bottom: 5px"/>
+					<button mat-raised-button color="primary" style="float: right;" (click)="savedata()">Save Profile</button>
+				</td>
+			</tr>
+			
+		</table>
+  </mat-card-content>
+</mat-card>

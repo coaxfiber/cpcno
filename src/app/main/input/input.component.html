@@ -1,27 +1,62 @@
-<h3 style="text-align: center;">
-	{{title}}
-</h3>
-<p style="text-align: center;padding-left: 20px;margin:auto;">
-  
-</p>
-<table style="width: 100%">
+<mat-card class="example-card" style="max-height: calc(100vh - 100px)">
+  <mat-card-header>
+<table style="width:100%">
 	<tr>
 		<td>
-			<img src="../assets/{{data.type}}.png" style="width: 100%">
+   			 <h3>{{title}}</h3>
 		</td>
-		<td valign="top">
-			<div style="height: 10px"></div>
-			<mat-form-field appearance="outline">
-			    <mat-label>ID Number</mat-label>
-			    <input #tid matInput placeholder="e.g. 0000001" [(ngModel)]='id' autocomplete="off" maxlength="7" (keydown)="keyDownFunction($event)">
-			    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-			    <mat-hint>{{ id.length }} / 7</mat-hint>
-			  </mat-form-field>
-		  <mat-form-field appearance="outline">
-		    <mat-label>{{title}} ID</mat-label>
-		    <input matInput placeholder="e.g. 2101" autocomplete="off" #sid>
-		    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-		  </mat-form-field>
+		<td>
+        	<button mat-raised-button 
+        	style="float: right;margin-right: 18px" (click)="closedialog()">Close</button> 
 		</td>
 	</tr>
 </table>
+  </mat-card-header>
+  <mat-card-content>
+  		<div style="height: 10px"></div>
+			<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;" *ngIf="data.type==2||data.type==3" >
+			    <mat-label>CP No.</mat-label>
+			    <input matInput placeholder="RO2-CNO-04-2020-001" [(ngModel)]='controlno' autocomplete="off">
+			  </mat-form-field>
+
+			<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;" *ngIf="data.type==1||data.type==0">
+			    <mat-label>CNO No.</mat-label>
+			    <input matInput placeholder="RO2-CNO-04-2020-001" [(ngModel)]='cno' autocomplete="off">
+			  </mat-form-field>
+
+			<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;">
+			    <mat-label>Name of the Proponent</mat-label>
+			    <input matInput placeholder="Mike Wilks" [(ngModel)]='name' autocomplete="off">
+			  </mat-form-field>
+
+			<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;">
+			    <mat-label>Project Title</mat-label>
+			    <input matInput placeholder="Mike Wilks" [(ngModel)]='ptitle' autocomplete="off">
+			  </mat-form-field>
+
+			<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;">
+			    <mat-label>Location</mat-label>
+			    <input matInput placeholder="Mike Wilks" [(ngModel)]='location' autocomplete="off">
+			  </mat-form-field>
+
+			<mat-form-field appearance="outline" style="width: 100%;margin-bottom: -15px;">
+			    <mat-label>Date of Issuance</mat-label>
+			    <input matInput type="date"  [(ngModel)]='datenow' autocomplete="off">
+			  </mat-form-field>
+
+			<!-- 
+              <input mat-raised-button type="file" id="avatar" (change)="onFileChange($event)" #fileInput class="inputfile" style="margin-top: 20px;margin-bottom: 20px" *ngIf="attachmentname==''" /> -->
+              <div style="height: 18px"></div>
+              <div class="form-group">
+				    <label for="file">Choose File</label>
+				    <input type="file"
+				           id="file"
+				           (change)="handleFileInput($event.target.files)">
+				</div>
+
+        <button mat-raised-button color="primary" style="float: right;margin-top: 15px" *ngIf="data.type==0||data.type==2&&savedatatemp==0" (click)="savedata()">Save Record</button>
+        <button mat-raised-button color="primary" style="float: right;margin-top: 15px" *ngIf="data.type==1||data.type==3&&savedatatemp==0" (click)="Updatedata()">Update Record</button>
+              <div style="height: 45px"></div>
+        <mat-progress-bar mode="indeterminate" *ngIf="savedatatemp==1"></mat-progress-bar>
+  </mat-card-content>
+ </mat-card>

@@ -1,0 +1,18 @@
+<mat-card class="example-card" style="max-height: calc(100vh - 100px)">
+  <mat-card-header>
+<table style="width:100%">
+	<tr>
+		<td>
+   			 <h3>{{title}}</h3>
+		</td>
+		<td>
+        	<button mat-raised-button 
+        	style="float: right;margin-right: 18px" (click)="closedialog()">Close</button> 
+		</td>
+	</tr>
+</table>
+  </mat-card-header>
+  <mat-card-content>
+  		<iframe [src]="url" style="width: 100%;height: calc(100vh - 250px)" ></iframe>
+  </mat-card-content>
+ </mat-card>

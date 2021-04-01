@@ -1,6 +1,6 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <h3>CNO</h3>
+    <h3>CP</h3>
   </mat-card-header>
   <mat-card-content>
     	<table style="width: 100%;margin-bottom: -15px">
@@ -13,14 +13,14 @@
 				  	</mat-form-field>
     			</td>
     			<td>
-    				<a mat-raised-button style="float: right;" (click)="openDialog(0)"><mat-icon>add</mat-icon> Add Record</a>
+    				<a mat-raised-button style="float: right;" (click)="openDialog(2)"><mat-icon>add</mat-icon> Add Record</a>
     			</td>
     		</tr>
     	</table>
    	<div style="max-height: calc(100vh - 416px);overflow-y: auto;">
-  	<table id="tableapp"  *ngIf="global.tdata!=undefined">
+  	<table id="tableapp"  *ngIf="global.tdatacp!=undefined">
   		<tr>
-        <th style="width: 150px">CNO No.</th>
+        <th style="width: 150px">CP No.</th>
   			<th style="min-width: 100px">Name of Proponent</th>
   			<th style="min-width: 100px">Project Title</th>
   			<th style="width: 120px">Date of Issuance</th>
@@ -29,14 +29,14 @@
   			<th style="text-align: center;width: 100px !important;">- Action -</th>
   		</tr>
   		<tr *ngFor="let a of collection | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
-  			<td>{{a.cno}}</td>
+  			<td>{{a.controlno}}</td>
   			<td>{{a.name}}</td>
   			<td>{{a.title}}</td>
   			<td>{{a.dataissue | date: 'mediumDate'}}</td>
         <td>{{a.location}}</td>
         <td style="padding: 5px  2px  5px  2px">
           
-          <table style="width: 100%;cursor: pointer;" border="0" (click)='openpdf(a.cno,a.attachname)'>
+          <table style="width: 100%;cursor: pointer;" border="0" (click)='openpdf(a.controlno,a.attachname)'>
             <tr style="border-style: hidden">
               <td style="width: 30px;border-style: hidden;padding: 0"><img src="assets/pdf-icon.png" style="width: 30px"></td>
               <td style="border-style: hidden;padding-left: 0">
@@ -45,7 +45,7 @@
           </table>
           </td>
   			<td style="text-align: center;">
-        		<button style="height: 25px;width: 35px;border-width: 2px;" (click)="openDialog(1,a)">
+        		<button style="height: 25px;width: 35px;border-width: 2px;" (click)="openDialog(3,a)">
         			<span class="material-icons" style="font-size: 18px;color: #3f51b5">create</span>
         		</button>&nbsp;
         		<button style="height: 25px;width: 35px;border-width: 2px;" (click)="deleteit(a.id)">
@@ -55,15 +55,14 @@
   		</tr>
   		
   	</table>
-    <div  *ngIf="global.tdata!=undefined">
-    <p style="text-align: center;" *ngIf="global.tdata.length==0">
+    <div  *ngIf="global.tdatacp!=undefined">
+    <p style="text-align: center;" *ngIf="global.tdatacp.length==0">
       - No Record! -
     </p>
     </div>
-    <mat-progress-bar mode="indeterminate" *ngIf="global.tdata==undefined"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" *ngIf="global.tdatacp==undefined"></mat-progress-bar>
 
   </div>
-  
   <table style="width: 100%">
     <tr>
       <td style="width: 150px">{{collection.length}} record(s) found!</td>

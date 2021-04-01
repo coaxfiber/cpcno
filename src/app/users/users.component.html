@@ -1,0 +1,58 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <h3>Users</h3>
+  </mat-card-header>
+  <mat-card-content>
+    	<table style="width: 100%;margin-bottom: -15px">
+    		<tr>
+    			<td>
+					<mat-form-field appearance="outline">
+					    <mat-label>Search name/username</mat-label>
+					    <input #tid matInput placeholder="keyword" autocomplete="off"  [(ngModel)]='search' autocomplete="off" (keyup)="keyDownFunction()">
+					    <mat-icon matSuffix>search</mat-icon>
+				  	</mat-form-field>
+    			</td>
+    			<td>
+    				<a mat-raised-button style="float: right;" (click)="openDialogadd(0)"><mat-icon>add</mat-icon> Add User</a>
+    			</td>
+    		</tr>
+    	</table>
+   	<div style="max-height: calc(100vh - 416px);overflow-y: auto;">
+  	<table id="tableapp"  *ngIf="global.users!=undefined">
+  		<tr>
+        <th style="width: 200px">Username</th>
+  			<th style="min-width: 190px">Name</th>
+  			<th style="text-align: center;width: 100px !important;">- Action -</th>
+  		</tr>
+  		<tr *ngFor="let a of collection | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
+  			<td>{{a.username}}</td>
+  			<td>{{a.name}}</td>
+  			<td style="text-align: center;">
+        		<button style="height: 25px;width: 35px;border-width: 2px;" (click)="openDialogadd(1,a)" *ngIf="a.id!='1'" >
+        			<span class="material-icons" style="font-size: 18px;color: #3f51b5">create</span>
+        		</button>&nbsp;
+        		<button style="height: 25px;width: 35px;border-width: 2px;" (click)="deleteit(a.id)" *ngIf="a.id!='1'">
+        			<span class="material-icons" style="font-size: 18px;color: #f44336">delete</span>
+        		</button>
+    		</td>
+  		</tr>
+  		
+  	</table>
+    <div  *ngIf="global.users!=undefined">
+    <p style="text-align: center;" *ngIf="global.users.length==0">
+      - No Record! -
+    </p>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="global.users==undefined"></mat-progress-bar>
+
+  </div>
+  
+  <table style="width: 100%">
+    <tr>
+      <td style="width: 150px">{{collection.length}} record(s) found!</td>
+      <td>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls> </td>
+    </tr>
+  </table>
+  </mat-card-content>
+</mat-card>

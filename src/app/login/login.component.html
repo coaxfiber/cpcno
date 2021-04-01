@@ -7,15 +7,15 @@
       <div>
           <ng-template matStepLabel>Fill out the form</ng-template>
           <div >
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username" required >
+          <mat-form-field appearance='outline' style="width: 100%;">
+            <input matInput placeholder="Username" [(ngModel)]='username' autocomplete="off"  (keyup)="keyDownFunction($event)">
+            <mat-icon matSuffix>contacts</mat-icon>
           </mat-form-field>
-          <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" required >
+          <mat-form-field appearance='outline' style="width: 100%;margin-top: -10px">
+          <input matInput placeholder="Password" type="password" required [(ngModel)]='password'  (keyup)="keyDownFunction($event)">
+          <mat-icon matSuffix>remove_red_eye</mat-icon>
         </mat-form-field>
         </div>
-       
-        <br>
           <div>
             <a  (click)="calltologin()" mat-button style="color: white;background-color: #3f51b5; float: right;" ><i class="material-icons">lock_open</i> Login</a>
           </div><br><br><br>

@@ -1,0 +1,40 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <h3>Logs</h3>
+  </mat-card-header>
+  <mat-card-content>
+					<mat-form-field appearance="outline" style="width: 200px;">
+					    <mat-label>Date Filter</mat-label>
+					    <input matInput type="date"  [(ngModel)]='datenow' autocomplete="off">
+            			<mat-icon matSuffix>calendar_today</mat-icon>
+					  </mat-form-field>
+    				<a mat-raised-button (click)="checkdate()" style="margin-left: 10px;margin-top: -5px" color="primary"><mat-icon>filter_list</mat-icon> Filter&nbsp;</a>
+   	<div style="max-height: calc(100vh - 416px);overflow-y: auto;margin-top: -15px">
+  	<table id="tableapp"  *ngIf="global.logs!=undefined" style="max-width: 900px">
+  		<tr>
+        <th style="min-width: 150px">Description</th>
+  			<th style="width: 150px">Time</th>
+  		</tr>
+  		<tr *ngFor="let a of collection">
+  			<td>{{a.descript}}</td>
+  			<td>{{timeConverter(a.datetimelog)}}</td>
+  		</tr>
+  		
+  	</table>
+    <div  *ngIf="global.logs!=undefined">
+    <p style="text-align: center;" *ngIf="global.logs.length==0">
+      - No Record! -
+    </p>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="global.logs==undefined"></mat-progress-bar>
+
+  </div>
+  
+  <table style="width: 100%">
+    <tr>
+      <td style="width: 150px">{{collection.length}} record(s) found!</td>
+      <td></td>
+    </tr>
+  </table>
+  </mat-card-content>
+</mat-card>

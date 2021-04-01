@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GlobalService } from './../global.service';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(public global: GlobalService,) { }
 
   ngOnInit() {
+  	this.global.swalclose()
   }
 
 }

@@ -4,25 +4,25 @@ import { GlobalService } from './../global.service';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { map } from "rxjs/operators";
-import { InputComponent } from './input/input.component';
+import { InputComponent } from './../main/input/input.component';
 import Swal from 'sweetalert2';
 
-import { PdfComponent } from './pdf/pdf.component';
+import { PdfComponent } from './../main/pdf/pdf.component';
 const swal = require('sweetalert2');
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-cp',
+  templateUrl: './cp.component.html',
+  styleUrls: ['./cp.component.css']
 })
-export class MainComponent implements OnInit {
+export class CpComponent implements OnInit {
 	id=''
   search=''
    p: number = 1;
    collection
   constructor(public dialog: MatDialog,public global: GlobalService,private http: Http) {
-    this.collection = this.global.tdata
-    if (this.global.tdata.length==0) {
+    this.collection = this.global.tdatacp
+    if (this.global.tdatacp.length==0) {
       this.getdata()
     }
   }
@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
   }
   openpdf(data,title): void {
     const dialogRef = this.dialog.open(PdfComponent, {
-      width: '99%',data:{id:'cno/'+data,title:title}, disableClose: true
+      width: '99%',data:{id:'cp/'+data,title:title}, disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -77,17 +77,17 @@ export class MainComponent implements OnInit {
   }
 
   keyDownFunction(){
+    this.collection = []
     if (this.search=='') {
-      this.collection = this.global.tdata
+      this.collection = this.global.tdatacp
     }else{
-      this.collection = []
-      for (var i = 0; i < this.global.tdata.length; ++i) {
+      for (var i = 0; i < this.global.tdatacp.length; ++i) {
         if (
-          this.global.tdata[i].cno.includes(this.search)||
-          this.global.tdata[i].name.includes(this.search)||
-          this.global.tdata[i].title.includes(this.search)
+          this.global.tdatacp[i].controlno.includes(this.search)||
+          this.global.tdatacp[i].name.includes(this.search)||
+          this.global.tdatacp[i].title.includes(this.search)
           ) {
-          this.collection.push(this.global.tdata[i])
+          this.collection.push(this.global.tdatacp[i])
         }
       }
     }
@@ -128,6 +128,7 @@ export class MainComponent implements OnInit {
             )
             this.getdata()
           },Error=>{
+
             this.global.swalerror()
             this.collection = []
             this.global.tdata = []
@@ -137,20 +138,21 @@ export class MainComponent implements OnInit {
   }
 
   getdata(){
-    this.global.tdata = undefined
+    this.global.tdatacp = undefined
     this.collection = []
     var header = new Headers();
              header.append("Accept", "application/json");
              header.append("Content-Type", "application/x-www-form-urlencoded");    
       let option = new RequestOptions({ headers: header });
       let urlSearchParams = new URLSearchParams();
-                    urlSearchParams.append("pass",'getdataall');
+                    urlSearchParams.append("pass",'getdataallcp');
+                    urlSearchParams.append("user",this.global.user.name);
                     
                   let body = urlSearchParams.toString()
     this.http.post(this.global.url+'', body,option)
        .map(response => response.json())
       .subscribe(res => {
-            this.global.tdata = res.data
+            this.global.tdatacp = res.data
             this.collection = res.data
             this.keyDownFunction()
           },Error=>{
